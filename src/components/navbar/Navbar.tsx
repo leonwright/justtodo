@@ -46,7 +46,7 @@ const Navbar = ({ isSignedIn }: { isSignedIn: boolean }) => {
       href: '/',
     },
     {
-      label: 'Add Title',
+      label: 'Add Todo',
       href: '/add',
       loggedIn: true,
     },

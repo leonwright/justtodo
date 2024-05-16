@@ -7,44 +7,17 @@ specifies that any unauthenticated user can "create", "read", "update",
 and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
-  Post: a.model({
-    postId: a.id(),
+  Todo: a.model({
+    id: a.id(),
     title: a.string().required(),
-    comments: a.hasMany('Comment', 'postId'),
+    description: a.string().required(),
+    isDone: a.boolean().required().default(false),
     owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
   }).authorization(allow => [
-    allow.guest().to(['read', 'create']),
-    allow.owner()
-  ]),
-  Comment: a.model({
-    postId: a.id(),
-    content: a.string().required(),
-    post: a.belongsTo('Post', 'postId'),
-    owner: a.string().authorization(allow => [allow.owner().to(['read', 'delete'])])
-  }).authorization(allow => [
-    allow.guest().to(['read', 'create']),
+    allow.authenticated().to(['create']),
     allow.owner()
   ])
 });
-
-// const schema = a.schema({
-//   Member: a.model({
-//     name: a.string().required(),
-//     // 1. Create a reference field
-//     teamId: a.id(),
-//     // 2. Create a belongsTo relationship with the reference field
-//     team: a.belongsTo('Team', 'teamId'),
-//   })
-//     .authorization(allow => [allow.guest()]),
-//
-//   Team: a.model({
-//     mantra: a.string().required(),
-//     // 3. Create a hasMany relationship with the reference field
-//     //    from the `Member`s model.
-//     members: a.hasMany('Member', 'teamId'),
-//   })
-//     .authorization(allow => [allow.guest()]),
-// });
 
 export type Schema = ClientSchema<typeof schema>;
 
