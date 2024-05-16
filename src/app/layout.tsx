@@ -22,6 +22,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon-256x256.png" />
+      </head>
       <body className={inter.className}>
         <Navbar isSignedIn={await isAuthenticated()} />
         <Auth>
