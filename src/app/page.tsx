@@ -20,7 +20,7 @@ export default async function Home() {
 
   if (!isUserSignedIn) {
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center">
+      <main className="flex flex-col items-center justify-center min-h-screen text-center">
         <h1 className="text-4xl pb-10 text-blue-500">Welcome to our Todo App!</h1>
         <p className="text-lg text-gray-500 mb-10">Please sign in to manage your todos.</p>
         <Link href="/signin">
